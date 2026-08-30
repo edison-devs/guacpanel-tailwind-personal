@@ -1,0 +1,72 @@
+@theme {
+    --breakpoint-xxs: 360px;
+    --breakpoint-xs: 480px;
+
+    --font-sans: 'Inter', sans-serif;
+
+    --primary-gradient-from: #0d9488;
+    --primary-gradient-to: #14b8a6;
+    --primary-color: #0d9488;
+    --primary-hover: #0f766e;
+    --primary-color-rgb: 13, 148, 136;
+
+    --selection-color-light: rgba(59, 130, 246, 0.1);
+    --selection-color-dark: rgba(37, 99, 235, 0.2);
+
+    --secondary-color: #f9fafb; /* gray-50 */
+
+    --error-color: #ef4444;
+    --error-color-rgb: 239, 68, 68;
+    --success-color: #48bb78;
+    --info-color: #54b4d3;
+    --warning-color: #eab308;
+
+    --text-xxs: 0.625rem; /* 10px */
+    --text-xxs--line-height: 0.875rem; /* 14px */
+
+    --text-xs: 0.75rem; /* Tailwind default is 12px, included already */
+    --text-xs--line-height: 1rem;
+
+    --spacing-1.25: 0.3125rem; /* 5px */
+    --spacing-1.5: 0.375rem; /* 6px */
+    --spacing-2.5: 0.625rem; /* 10px */
+
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.375rem; /* default-ish */
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+@layer utilities {
+    body,
+    html {
+        --font-sans:
+            'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+            'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+}
+
+:root {
+    --main-container-radius: 0.25rem;
+}
+
+/* Overlay stacking scale — every teleported/fixed layer must use one of these.
+   Banners < dropdowns/popovers < command palette < dialogs < toasts < nprogress. */
+:root {
+}

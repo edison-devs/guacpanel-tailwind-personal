@@ -1,0 +1,23 @@
+/*
+ * .card — Stripe-inspired base card token.
+ *
+ * Shadow: none, in either theme. The border alone defines the card; a shadow
+ *         on this many cards reads as clutter rather than depth.
+ * Border: its own token, a step lighter than the global --border so a page of
+ *         cards reads as grouping rather than as a stack of outlined boxes.
+ * Radius: 8px across the board — consistent, never larger.
+ * Background: pure surface, no tint.
+ */
+.card {
+    background-color: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+}
+
+:root {
+    --card-border: #edeff2;
+}
+
+.dark {
+    --card-border: #262a31;
+}

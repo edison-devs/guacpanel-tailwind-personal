@@ -1,0 +1,30 @@
+/* Base Styles */
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+/* FilePond Customizations */
+.filepond--drop-label {
+    font-family: var(--font-sans);
+}
+
+/* Utility Classes */
+.main-heading,
+
+/* Dark heading colors inherit from variables; no override needed */
+
+/* Tailwind's preflight sets `cursor: default` on buttons. */
+@layer base {
+    button:not(:disabled),
+    [role='button']:not([aria-disabled='true']),
+    summary,
+    label[for] {
+        cursor: pointer;
+    }
+
+    button:disabled,
+    [role='button'][aria-disabled='true'] {
+        cursor: not-allowed;
+    }
+}

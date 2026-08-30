@@ -1,0 +1,17 @@
+node_modules
+vendor
+public/build
+public/hot
+storage
+bootstrap/cache
+*.min.js
+*.min.css
+composer.json
+packages.json
+resources/js/components/ui/*
+resources/views/mail/*
+resources/views/email/*
+resources/views/vendor/*
+
+resources/js/Components/ui/
+resources/js/lib/

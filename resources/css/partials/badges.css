@@ -1,0 +1,44 @@
+@layer components {
+    /* ─── Base ─── */
+    .badge {
+        @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium;
+    }
+
+    /* ─── Sizes ─── */
+    .badge-xxs {
+        @apply text-xxs px-1.5 py-0.5;
+    }
+    .badge-xs {
+        @apply px-2 py-0.5 text-xs;
+    }
+    .badge-sm {
+        @apply px-2.5 py-0.5 text-sm;
+    }
+
+    /* ─── Variants (tinted bg + colored text) ─── */
+    .badge-primary {
+        @apply bg-teal-50 text-teal-700 dark:bg-teal-900/20 dark:text-teal-400;
+    }
+
+    .badge-secondary {
+        color: var(--foreground);
+        background-color: var(--muted);
+    }
+
+    .badge-info {
+        @apply bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400;
+    }
+
+    .badge-success {
+        @apply bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400;
+    }
+
+    .badge-warning {
+        @apply bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400;
+    }
+
+    .badge-error,
+    .badge-danger {
+        @apply bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400;
+    }
+}

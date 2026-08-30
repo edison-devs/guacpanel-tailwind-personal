@@ -1,0 +1,245 @@
+/* Command Palette */
+.command-palette-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    backdrop-filter: blur(4px);
+}
+
+@media (min-width: 640px) {
+    .command-palette-overlay {
+        padding-top: 15vh;
+    }
+
+    .command-palette-modal {
+        margin: 0 1rem;
+    }
+}
+
+.dark .command-palette-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.command-palette-modal {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 0.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.dark .command-palette-modal {
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.command-palette-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.command-palette-search-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+}
+
+/* Borderless: the header row is the field. A bordered box with its own focus
+   ring, an icon outside it and a kbd outside that made three widgets out of one,
+   and the ring announced focus the palette has by definition. The old focus
+   colour was a hardcoded #3b82f6 that belonged to no token. */
+.command-palette-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.875rem;
+    color: var(--foreground);
+    padding: 0.25rem 0;
+}
+
+.command-palette-input::placeholder {
+    color: var(--muted-foreground);
+}
+
+.command-palette-kbd {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+}
+
+.command-palette-results {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.command-palette-empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+.command-group {
+    padding: 0.25rem 0;
+}
+
+.command-group + .command-group {
+    border-top: 1px solid var(--border);
+    margin-top: 0.25rem;
+    padding-top: 0.5rem;
+}
+
+.command-group-label {
+    padding: 0.5rem 1rem 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted-foreground);
+}
+
+.command-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: background-color 0.1s ease;
+}
+
+.command-item:hover,
+.command-item.selected {
+    background: var(--accent);
+    color: var(--accent-foreground);
+}
+
+.command-item-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+}
+
+.command-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.command-item-label {
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.command-item-subtitle {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Loading spinner */
+.command-palette-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.command-palette-spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: command-spin 0.6s linear infinite;
+}
+
+@keyframes command-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Transitions */
+.command-palette-enter-active {
+    transition: opacity 0.15s ease-out;
+}
+
+.command-palette-leave-active {
+    transition: opacity 0.1s ease-in;
+}
+
+.command-palette-enter-from,
+.command-palette-leave-to {
+    opacity: 0;
+}
+
+.command-palette-enter-active .command-palette-modal {
+    transition:
+        opacity 0.15s ease-out,
+        transform 0.15s ease-out;
+}
+
+.command-palette-leave-active .command-palette-modal {
+    transition:
+        opacity 0.1s ease-in,
+        transform 0.1s ease-in;
+}
+
+.command-palette-enter-from .command-palette-modal {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+}
+
+.command-palette-leave-to .command-palette-modal {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+.command-palette-notice {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
+
+.command-palette-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    font-size: 0.6875rem;
+    color: var(--muted-foreground);
+}
+
+.command-palette-footer span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
