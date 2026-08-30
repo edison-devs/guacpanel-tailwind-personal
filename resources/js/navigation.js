@@ -26,6 +26,13 @@ export const workspaceNav = [
         keywords: ['analytics', 'graphs', 'data'],
     },
     {
+        name: 'Customers',
+        route: 'admin.customer.index',
+        icon: 'users',
+        permission: 'manage-customers',
+        keywords: ['clients', 'contacts', 'empresas', 'clientes'],
+    },
+    {
         /* The reader's own notifications, not the admin authoring tool -- that
            lives under adminNav with the rest of system configuration. */
         name: 'Notifications',
