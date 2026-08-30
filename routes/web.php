@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminSessionController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminUsersVerificationController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ImpersonationController;
 use App\Http\Controllers\Auth\ForcePasswordChangeController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -217,6 +218,19 @@ Route::middleware(['web', 'auth', 'auth.session'])->group(function () {
                                         ->name('start')
                                         ->middleware('permission:impersonate-users');
                                 });
+                        });
+
+                    // Customer Routes
+                    Route::prefix('customers')
+                        ->name('customer.')
+                        ->middleware('permission:manage-customers')
+                        ->group(function () {
+                            Route::controller(CustomerController::class)->group(function () {
+                                Route::get('/', 'index')->name('index');
+                                Route::post('/', 'store')->name('store');
+                                Route::put('/{id}', 'update')->name('update');
+                                Route::delete('/{id}', 'destroy')->name('destroy');
+                            });
                         });
 
                     // Failed Jobs Routes
