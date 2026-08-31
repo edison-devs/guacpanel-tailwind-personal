@@ -16,7 +16,6 @@ class CustomerController extends Controller
         $sortBy  = $request->input('sort_by', 'id');
         $sortDir = $request->input('sort_dir', 'desc');
         $perPage = $request->input('per_page', 10);
-        $filters = $request->only(['name', 'email', 'phone', 'company']);
 
         try {
             $query = match ($filter) {
@@ -34,7 +33,6 @@ class CustomerController extends Controller
             return Inertia::render('Customers/Index', [
                 'customers' => $customers,
                 'filter'    => $filter,
-                'filters'   => $filters,
                 'sort_by'   => $sortBy,
                 'sort_dir'  => $sortDir,
                 'per_page'  => $perPage,
@@ -45,9 +43,9 @@ class CustomerController extends Controller
             return Inertia::render('Customers/Index', [
                 'customers' => null,
                 'filter'    => $filter,
-                'filters'   => $filters,
                 'sort_by'   => $sortBy,
                 'sort_dir'  => $sortDir,
+                'per_page'  => $perPage,
                 'error'     => 'No se pudieron cargar los clientes. Intenta de nuevo.',
             ]);
         }
