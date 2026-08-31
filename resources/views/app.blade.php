@@ -7,7 +7,9 @@
 
         <!-- Primary Meta Tags -->
         <title inertia>{{ config('app.name', 'GuacPanel') }}</title>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        @if(config('app.env') === 'production')
+            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        @endif
         <meta name="title" content="{{ config('app.name', 'GuacPanel') }}" />
         <meta name="description" content="{{ config('guacpanel.meta.description') }}" />
         <meta name="keywords" content="{{ config('guacpanel.meta.keywords') }}" />
